@@ -195,7 +195,7 @@
     const weeklyTarget=Math.max(0,Math.min(7,Number(h.weeklyTarget)||0));
     return {id:h.id,name:h.id==='base-4'?'シャワー':h.name,icon:h.icon||'✨',memo:String(h.memo||''),createdAt,archivedAt:h.archivedAt||null,targetCount,targetHistory:Array.isArray(h.targetHistory)&&h.targetHistory.length?h.targetHistory:[{from:createdAt,count:targetCount}],activeDays,activeDayHistory:Array.isArray(h.activeDayHistory)&&h.activeDayHistory.length?h.activeDayHistory:[{from:createdAt,days:activeDays}],weeklyTarget,weeklyTargetHistory:Array.isArray(h.weeklyTargetHistory)?h.weeklyTargetHistory:(weeklyTarget?[{from:createdAt,count:weeklyTarget}]:[])};
   });
-  if(localStorage.getItem('habit-defaults-pruned-v1')!=='1'){const keepDefaults=new Set(defaults.map(h=>h.id));habits=habits.map(h=>h.id.startsWith('base-')&&!keepDefaults.has(h.id)&&!h.archivedAt?{...h,archivedAt:todayKey}:h);localStorage.setItem('habit-defaults-pruned-v1','1')}
+  {const keepDefaults=new Set(defaults.map(h=>h.id));habits=habits.map(h=>h.id.startsWith('base-')&&!keepDefaults.has(h.id)&&!h.archivedAt?{...h,archivedAt:todayKey}:h);localStorage.setItem('habit-defaults-pruned-v2','1')}
   let settings=getSaved('habit-settings-v1',{theme:'sage'});
   if(![15,25,45].includes(Number(settings.focusMinutes)))settings.focusMinutes=25;
   let historyRange='all';
